@@ -1,0 +1,111 @@
+=== program1.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program1.pas
+program1.pas(13,3) Error: Identifier not found "Result"
+program1.pas(54,4) Fatal: There were 1 errors compiling module, stopping
+Fatal: Compilation aborted
+Error: /opt/homebrew/bin/ppca64 returned an error exitcode
+
+=== program10.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program10.pas
+program10.pas(34,16) Error: Invalid assignment, procedures return no value
+program10.pas(57,4) Fatal: There were 1 errors compiling module, stopping
+Fatal: Compilation aborted
+Error: /opt/homebrew/bin/ppca64 returned an error exitcode
+
+=== program2.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program2.pas
+program2.pas(9,3) Error: Identifier not found "Result"
+program2.pas(18,5) Fatal: Syntax error, ";" expected but "ELSE" found
+Fatal: Compilation aborted
+Error: /opt/homebrew/bin/ppca64 returned an error exitcode
+
+=== program3.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program3.pas
+program3.pas(23,3) Error: Identifier not found "Result"
+program3.pas(27,36) Error: Operator is not overloaded: "Int64" and "Boolean"
+program3.pas(44,15) Error: Incompatible types: got "untyped" expected "ShortString"
+program3.pas(45,25) Error: Incompatible type for arg no. 1: Got "untyped", expected "AnsiString"
+program3.pas(61,4) Fatal: There were 4 errors compiling module, stopping
+Fatal: Compilation aborted
+Error: /opt/homebrew/bin/ppca64 returned an error exitcode
+
+=== program4.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program4.pas
+program4.pas(11,3) Error: Type mismatch
+program4.pas(18,3) Error: Identifier not found "Result"
+program4.pas(27,4) Fatal: There were 2 errors compiling module, stopping
+Fatal: Compilation aborted
+Error: /opt/homebrew/bin/ppca64 returned an error exitcode
+
+=== program5.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program5.pas
+Assembling mergesort
+Linking program5
+-macosx_version_min has been renamed to -macos_version_min
+ld: warning: -multiply_defined is obsolete
+66 lines compiled, 0.4 sec
+
+=== program6.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program6.pas
+program6.pas(32,5) Note: Local variable "i" not used
+program6.pas(45,3) Error: Identifier not found "Result"
+program6.pas(70,15) Error: Incompatible types: got "untyped" expected "ShortString"
+program6.pas(71,28) Error: Incompatible type for arg no. 1: Got "untyped", expected "AnsiString"
+program6.pas(71,46) Error: Incompatible type for arg no. 1: Got "untyped", expected "AnsiString"
+program6.pas(81,4) Fatal: There were 4 errors compiling module, stopping
+Fatal: Compilation aborted
+Error: /opt/homebrew/bin/ppca64 returned an error exitcode
+
+=== program7.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program7.pas
+program7.pas(15,36) Error: Type identifier expected
+program7.pas(15,36) Fatal: Syntax error, ";" expected but "const char" found
+Fatal: Compilation aborted
+Error: /opt/homebrew/bin/ppca64 returned an error exitcode
+
+=== program8.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program8.pas
+program8.pas(10,25) Error: Incompatible types: got "Double" expected "SmallInt"
+program8.pas(13,3) Error: Identifier not found "Result"
+program8.pas(26,4) Fatal: There were 2 errors compiling module, stopping
+Fatal: Compilation aborted
+Error: /opt/homebrew/bin/ppca64 returned an error exitcode
+
+=== program9.pas ===
+Free Pascal Compiler version 3.2.2 [2024/09/11] for aarch64
+Copyright (c) 1993-2021 by Florian Klaempfl and others
+Target OS: Darwin for AArch64
+Compiling program9.pas
+program9.pas(28,21) Error: Identifier not found "Max"
+program9.pas(33,3) Error: Identifier not found "Result"
+program9.pas(51,4) Fatal: There were 2 errors compiling module, stopping
+Fatal: Compilation aborted
+Error: /opt/homebrew/bin/ppca64 returned an error exitcode
+

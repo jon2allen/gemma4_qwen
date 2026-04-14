@@ -1,0 +1,144 @@
+Here are four progressively challenging logic problems covering different types of reasoning:
+
+---
+
+### **Problem 1: The Mysterious Lock (Deduction Puzzle)**
+**Problem Description:**
+A treasure chest has a 3-digit combination lock. The following clues are provided:
+1. The digits are all distinct and range from 0 to 9.
+2. The first digit is twice the second digit.
+3. The sum of the second and third digits is equal to the first digit.
+4. The third digit is odd.
+
+Determine the correct combination.
+
+**Input Format:**
+None (pure deduction).
+
+**Output Format:**
+A 3-digit number (e.g., `123`).
+
+**Example:**
+If the clues were simpler (e.g., "first digit is 1, second is 2"), the answer might be `123`.
+
+**Solution:**
+The correct combination is `421`.
+
+---
+
+### **Problem 2: The Knights and Knaves (Mathematical Logic)**
+**Problem Description:**
+On an island, there are two types of inhabitants:
+- **Knights**, who always tell the truth.
+- **Knaves**, who always lie.
+
+You encounter two inhabitants, A and B.
+- A says: "B is a knight."
+- B says: "A and I are of opposite types."
+
+Determine the types of A and B (knight or knave).
+
+**Input Format:**
+None (logical statements).
+
+**Output Format:**
+Two words separated by a space, representing the types of A and B (e.g., `knight knave`).
+
+**Example:**
+If A says "B is a knave" and B says "A is a knight," the answer would be `knave knight`.
+
+**Solution:**
+A is a **knave**, and B is a **knight**.
+
+---
+
+### **Problem 3: The Categorical Conundrum (Syllogisms)**
+**Problem Description:**
+Evaluate the validity of the following syllogism:
+1. All philosophers are logicians.
+2. Some logicians are mathematicians.
+3. Therefore, some philosophers are mathematicians.
+
+Is the conclusion necessarily true? If not, provide a counterexample using sets.
+
+**Input Format:**
+None (syllogism evaluation).
+
+**Output Format:**
+- First line: `Valid` or `Invalid`.
+- Second line (if invalid): A counterexample in the form of sets (e.g., `Philosophers = {A}, Logicians = {A, B}, Mathematicians = {B}`).
+
+**Example:**
+For the syllogism:
+1. All birds can fly.
+2. Penguins are birds.
+3. Therefore, penguins can fly.
+The output would be:
+```
+Invalid
+Birds = {penguin, sparrow}, FlyingAnimals = {sparrow}
+```
+
+**Solution:**
+```
+Invalid
+Philosophers = {A}, Logicians = {A, B}, Mathematicians = {B}
+```
+(No overlap between philosophers and mathematicians.)
+
+---
+
+### **Problem 4: The Scheduling Dilemma (Constraint Satisfaction)**
+**Problem Description:**
+Four employees (Alice, Bob, Carol, Dave) must be assigned to four shifts (Morning, Afternoon, Evening, Night) with the following constraints:
+1. Alice cannot work the Morning shift.
+2. Bob cannot work the Night shift.
+3. Carol must work either the Morning or Evening shift.
+4. Dave must work a shift adjacent to Carol’s (e.g., if Carol works Morning, Dave must work Afternoon).
+5. The Afternoon shift must be assigned to someone who can work the Night shift (but not necessarily vice versa).
+
+Find a valid assignment of employees to shifts.
+
+**Input Format:**
+None (constraint satisfaction).
+
+**Output Format:**
+Four lines, each in the format `Shift: Employee` (e.g.,
+```
+Morning: Carol
+Afternoon: Dave
+Evening: Alice
+Night: Bob
+```
+
+**Example:**
+A simpler version might have 2 employees and 2 shifts with fewer constraints.
+
+**Solution:**
+One valid assignment is:
+```
+Morning: Carol
+Afternoon: Bob
+Evening: Alice
+Night: Dave
+```
+
+---
+
+### **Bonus Problem: Fallacy Identification (Logical Fallacies)**
+**Problem Description:**
+Identify the logical fallacy in the following argument:
+"All cats are mammals. Some mammals are dogs. Therefore, some cats are dogs."
+
+**Input Format:**
+None (argument analysis).
+
+**Output Format:**
+The name of the fallacy (e.g., `Affirming the consequent`).
+
+**Solution:**
+**Illicit minor** (or **undistributed middle** in syllogistic terms).
+
+---
+
+These problems test deduction, mathematical logic, syllogistic reasoning, constraint satisfaction, and fallacy identification, with increasing complexity.

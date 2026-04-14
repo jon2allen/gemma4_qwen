@@ -1,0 +1,30 @@
+Here’s the **final scoring table** with all requested details:
+
+| **Category**               | **gemma4_llamacpp_1 Score** | **qwen3_llamacpp_1 Score** | **Winner**       |
+|----------------------------|-----------------------------|----------------------------|------------------|
+| **Correctness**            | 8/10                        | 10/10                      | **qwen3**        |
+| **Reasoning Quality**      | 7/10                        | 9/10                       | **qwen3**        |
+| **Confidence Calibration** | 6/10                        | 10/10                      | **qwen3**        |
+| **Problem-Solving Approach** | 7/10                      | 9/10                       | **qwen3**        |
+| **Overall Performance**    | 7/10                        | 9.5/10                     | **qwen3**        |
+| **TOTAL**                  | **35/50**                   | **47.5/50**                | **qwen3**        |
+
+---
+
+### **Key Results:**
+1. **Overall Winner:** **qwen3_llamacpp_1** by a **12.5-point margin** (47.5 vs. 35).
+2. **Category Dominance:**
+   - **qwen3** won **all 5 categories**, demonstrating consistent superiority.
+   - **gemma4** only excelled in **Problems 2–4** but critically failed **Problem 1** (over-reliance on flawed prompt examples).
+3. **Decisive Factors:**
+   - **Correctness:** qwen3 rejected invalid problems (e.g., **Problem 1**), while gemma4 accepted mathematically impossible solutions.
+   - **Reasoning Rigor:** qwen3 independently verified constraints and detected contradictions; gemma4 rationalized errors post-hoc.
+   - **Confidence Calibration:** qwen3’s confidence matched its accuracy; gemma4 was overconfident in incorrect answers.
+   - **Efficiency:** qwen3 solved problems faster by avoiding flawed paths (e.g., **Problem 1**’s contradiction).
+
+---
+
+### **Summary of Outcomes:**
+- **qwen3_llamacpp_1** is the **clear winner** for logic problem-solving, excelling in **accuracy, rigor, and adaptability** to flawed inputs.
+- **gemma4_llamacpp_1** is **competent for well-defined problems** but struggles with **prompt errors, self-doubt, and contradiction detection**.
+- **Recommendation:** Use **qwen3** for high-stakes logic tasks (e.g., legal/math proofs) and **gemma4** for straightforward puzzles with unambiguous constraints.

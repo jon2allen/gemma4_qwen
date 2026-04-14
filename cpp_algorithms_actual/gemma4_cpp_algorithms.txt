@@ -1,0 +1,620 @@
+Here's a thinking process to ensure all requirements are met:
+
+1.  **Understand the Goal:** The request is to provide 10 diverse C++ algorithm examples.
+2.  **Understand the Structure:** Each example must strictly follow five components:
+    *   Algorithm Name
+    *   Brief Description
+    *   C++ Implementation (complete, compilable code)
+    *   Time and Space Complexity Analysis
+    *   Example Use Case
+3.  **Ensure Diversity (The 10 Algorithms):** I need to cover the specified categories:
+    *   *Sorting:* (e.g., Merge Sort, Quick Sort) -> Choose Merge Sort for stability/guaranteed complexity.
+    *   *Searching:* (e.g., Binary Search) -> Essential and simple.
+    *   *Graph Algorithms:* (e.g., BFS, DFS, Dijkstra's) -> Choose BFS (Breadth-First Search) as it's fundamental.
+    *   *Dynamic Programming:* (e.g., Fibonacci, Knapsack) -> Choose Fibonacci (memoization/tabulation) for simplicity.
+    *   *Other Fundamental:* (e.g., Two Sum, Prime Sieve, Quick Sort) -> Choose Quick Sort for in-place sorting.
+    *   *Other Fundamental:* (e.g., Linear Search, Insertion Sort) -> Choose Linear Search (simple baseline).
+    *   *Graph/Pathfinding:* (e.g., Dijkstra's) -> Choose Dijkstra's for weighted graphs.
+    *   *String/Pattern:* (e.g., KMP, Rabin-Karp) -> Choose Two Sum (a common array problem, often solved with hashing/two pointers).
+    *   *Advanced/Optimization:* (e.g., Sliding Window) -> Choose Sliding Window for array optimization.
+    *   *Tree/Traversal:* (e.g., DFS/BFS on a tree) -> Choose DFS (Depth-First Search) on a tree structure.
+
+4.  **Execution - Drafting Each Algorithm (Self-Correction/Refinement during drafting):**
+
+    *   *Check 1 (Merge Sort):* Needs implementation, complexity (O(N log N) time, O(N) space), and use case. (Looks good).
+    *   *Check 2 (Binary Search):* Needs implementation, complexity (O(log N) time, O(1) space), and use case. (Looks good).
+    *   *Check 3 (BFS):* Needs graph representation (adjacency list), implementation using a queue, complexity (O(V+E) time, O(V) space), and use case. (Looks good).
+    *   *Check 4 (Fibonacci DP):* Needs implementation using memoization/tabulation, complexity (O(N) time, O(N) space), and use case. (Looks good).
+    *   *Check 5 (Quick Sort):* Needs implementation (partitioning), complexity (Avg: O(N log N), Worst: O(N^2)), and use case. (Looks good).
+    *   *Check 6 (Linear Search):* Needs implementation, complexity (O(N) time, O(1) space), and use case. (Simple baseline).
+    *   *Check 7 (Dijkstra's):* Needs graph representation, implementation using a priority queue, complexity (O(E log V) time, O(V+E) space), and use case. (Crucial for weighted paths).
+    *   *Check 8 (Two Sum):* Needs implementation using a hash map (`std::unordered_map`), complexity (O(N) time, O(N) space), and use case. (Common interview problem).
+    *   *Check 9 (Sliding Window):* Needs implementation (e.g., finding max subarray sum of size K), complexity (O(N) time, O(1) space), and use case. (Optimization technique).
+    *   *Check 10 (DFS):* Needs graph/tree representation, implementation using recursion/stack, complexity (O(V+E) time, O(V) space), and use case. (Traversal).
+
+5.  **Final Review:** Ensure the formatting is clean, the code is complete and compilable (using standard C++ libraries), and all five required components are present for all 10 entries. (The structure looks robust and highly detailed).
+
+As a helpful assistant, I have compiled a list of 10 diverse C++ algorithm examples, adhering strictly to the requested structure.
+
+***
+
+## 1. Merge Sort
+
+**Brief Description:**
+Merge Sort is a stable, comparison-based sorting algorithm that follows the Divide and Conquer paradigm. It recursively divides the array into halves until each sub-array contains only one element (which is inherently sorted), and then merges these sorted sub-arrays back together.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+void merge(std::vector<int>& arr, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    std::vector<int> L(n1);
+    std::vector<int> R(n2);
+
+    for (int i = 0; i < n1; i++) L[i] = arr[left + i];
+    for (int j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
+
+    int i = 0, j = 0, k = left;
+
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k++] = L[i++];
+        } else {
+            arr[k++] = R[j++];
+        }
+    }
+
+    while (i < n1) {
+        arr[k++] = L[i++];
+    }
+    while (j < n2) {
+        arr[k++] = R[j++];
+    }
+}
+
+void mergeSort(std::vector<int>& arr, int left, int right) {
+    if (left >= right) return;
+    int mid = left + (right - left) / 2;
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid + 1, right);
+    merge(arr, left, mid, right);
+}
+
+// Example usage:
+void run_merge_sort() {
+    std::vector<int> data = {38, 27, 43, 3, 9, 82, 10};
+    mergeSort(data, 0, data.size() - 1);
+    std::cout << "Merge Sort Result: ";
+    for (int x : data) std::cout << x << " ";
+    std::cout << "\n";
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:** $O(N \log N)$ (Worst, Average, and Best case).
+*   **Space Complexity:** $O(N)$ (Due to the temporary arrays used during the merge step).
+
+**Example Use Case:**
+Sorting large datasets where guaranteed $O(N \log N)$ performance is required, or when stability (preserving the relative order of equal elements) is critical.
+
+***
+
+## 2. Binary Search
+
+**Brief Description:**
+Binary Search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing the search interval in half. If the value of the search key is less than the item in the middle of the interval, it narrows the search to the lower half; otherwise, it narrows it to the upper half.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+
+// Assumes the input vector 'arr' is sorted.
+int binarySearch(const std::vector<int>& arr, int target) {
+    int left = 0;
+    int right = arr.size() - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2; // Prevents overflow
+
+        if (arr[mid] == target) {
+            return mid; // Target found
+        } else if (arr[mid] < target) {
+            left = mid + 1; // Target is in the right half
+        } else {
+            right = mid - 1; // Target is in the left half
+        }
+    }
+    return -1; // Target not found
+}
+
+// Example usage:
+void run_binary_search() {
+    std::vector<int> sorted_data = {2, 5, 8, 12, 16, 23, 38};
+    int target = 23;
+    int index = binarySearch(sorted_data, target);
+
+    if (index != -1) {
+        std::cout << "Binary Search Result: Target " << target << " found at index " << index << "\n";
+    } else {
+        std::cout << "Binary Search Result: Target " << target << " not found.\n";
+    }
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:** $O(\log N)$ (Highly efficient, as the search space is halved in each step).
+*   **Space Complexity:** $O(1)$ (Iterative implementation uses constant extra space).
+
+**Example Use Case:**
+Searching for a specific element in a large, pre-sorted array or list (e.g., looking up a specific entry in a dictionary or database index).
+
+***
+
+## 3. Breadth-First Search (BFS)
+
+**Brief Description:**
+BFS is a graph traversal algorithm that explores all the neighbor nodes at the present depth level before moving on to the nodes at the next depth level. It uses a queue data structure to manage the order of nodes to visit, ensuring a level-by-level exploration.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <map>
+
+// Graph represented using an adjacency list
+using Graph = std::map<int, std::vector<int>>;
+
+void bfs(const Graph& graph, int startNode) {
+    std::queue<int> q;
+    std::map<int, bool> visited;
+
+    q.push(startNode);
+    visited[startNode] = true;
+
+    std::cout << "BFS Traversal starting from " << startNode << ": ";
+
+    while (!q.empty()) {
+        int node = q.front();
+        q.pop();
+        std::cout << node << " ";
+
+        // Visit all neighbors
+        if (graph.count(node)) {
+            for (int neighbor : graph.at(node)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    q.push(neighbor);
+                }
+            }
+        }
+    }
+    std::cout << "\n";
+}
+
+// Example usage:
+void run_bfs() {
+    Graph g = {
+        {1, {2, 3}},
+        {2, {4}},
+        {3, {4, 5}},
+        {4, {6}},
+        {5, {6}},
+        {6, {}}
+    };
+    bfs(g, 1); // Traversal order: 1 2 3 4 5 6
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:** $O(V + E)$ (Where $V$ is the number of vertices and $E$ is the number of edges. Every vertex and edge is processed exactly once).
+*   **Space Complexity:** $O(V)$ (To store the queue and the visited set).
+
+**Example Use Case:**
+Finding the shortest path in an unweighted graph (e.g., finding the minimum number of steps required to get from point A to point B on a social network).
+
+***
+
+## 4. Fibonacci Sequence (Dynamic Programming - Memoization)
+
+**Brief Description:**
+The Fibonacci sequence is a series where each number is the sum of the two preceding ones (e.g., 0, 1, 1, 2, 3, 5, 8...). Using Dynamic Programming (specifically memoization), we store the results of expensive function calls (like $Fib(n-1)$ and $Fib(n-2)$) and return the cached result when the same inputs occur again, avoiding redundant calculations.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+#include <map>
+
+// Using a map for memoization (caching results)
+std::map<int, long long> memo;
+
+long long fibonacci(int n) {
+    if (n <= 1) return n;
+    
+    // Check if the result is already computed
+    if (memo.count(n)) {
+        return memo[n];
+    }
+
+    // Compute and store the result
+    long long result = fibonacci(n - 1) + fibonacci(n - 2);
+    memo[n] = result;
+    return result;
+}
+
+// Example usage:
+void run_fibonacci_dp() {
+    int n = 40; // Calculate the 40th Fibonacci number
+    long long result = fibonacci(n);
+    std::cout << "Fibonacci DP Result (F_" << n << "): " << result << "\n";
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:** $O(N)$ (Each Fibonacci number up to $N$ is computed only once).
+*   **Space Complexity:** $O(N)$ (To store the memoization table/map).
+
+**Example Use Case:**
+Solving recursive problems with overlapping subproblems, such as calculating Fibonacci numbers, or optimizing complex combinatorial problems.
+
+***
+
+## 5. Quick Sort
+
+**Brief Description:**
+Quick Sort is an efficient, in-place sorting algorithm that uses the Divide and Conquer approach. It selects a 'pivot' element from the array and partitions the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. It then recursively applies the same logic to the sub-arrays.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+// Partition function: places the pivot element at its correct position
+int partition(std::vector<int>& arr, int low, int high) {
+    int pivot = arr[high]; // Choosing the last element as pivot
+    int i = (low - 1);     // Index of smaller element
+
+    for (int j = low; j <= high - 1; j++) {
+        // If current element is smaller than or equal to pivot
+        if (arr[j] <= pivot) {
+            i++; // Increment index of smaller element
+            std::swap(arr[i], arr[j]);
+        }
+    }
+    std::swap(arr[i + 1], arr[high]);
+    return (i + 1);
+}
+
+// Main Quick Sort function
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        // pi is partitioning index, arr[pi] is now at right place
+        int pi = partition(arr, low, high);
+
+        // Recursively sort elements before and after partition
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+// Example usage:
+void run_quick_sort() {
+    std::vector<int> data = {10, 7, 8, 9, 1, 5};
+    quickSort(data, 0, data.size() - 1);
+    std::cout << "Quick Sort Result: ";
+    for (int x : data) std::cout << x << " ";
+    std::cout << "\n";
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:**
+    *   Average Case: $O(N \log N)$
+    *   Worst Case: $O(N^2)$ (Occurs when the pivot selection is consistently poor, e.g., already sorted array).
+*   **Space Complexity:** $O(\log N)$ (Due to the recursion stack depth).
+
+**Example Use Case:**
+General-purpose sorting where average-case performance is critical, and the overhead of $O(N)$ space (like in Merge Sort) is undesirable.
+
+***
+
+## 6. Linear Search
+
+**Brief Description:**
+Linear Search (or Sequential Search) is the simplest searching algorithm. It sequentially checks every element in the list until a match is found or the entire list has been searched. It is suitable for small, unsorted datasets.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+
+// Returns the index of the target if found, otherwise -1
+int linearSearch(const std::vector<int>& arr, int target) {
+    for (int i = 0; i < arr.size(); ++i) {
+        if (arr[i] == target) {
+            return i; // Found
+        }
+    }
+    return -1; // Not found
+}
+
+// Example usage:
+void run_linear_search() {
+    std::vector<int> unsorted_data = {5, 1, 9, 3, 7};
+    int target = 9;
+    int index = linearSearch(unsorted_data, target);
+
+    if (index != -1) {
+        std::cout << "Linear Search Result: Target " << target << " found at index " << index << "\n";
+    } else {
+        std::cout << "Linear Search Result: Target " << target << " not found.\n";
+    }
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:** $O(N)$ (Worst and Average case, as we might have to check every element).
+*   **Space Complexity:** $O(1)$ (Constant extra space).
+
+**Example Use Case:**
+Searching through very small, unsorted arrays where the overhead of sorting the data first (e.g., $O(N \log N)$) would be greater than the time taken by the linear search ($O(N)$).
+
+***
+
+## 7. Dijkstra's Algorithm
+
+**Brief Description:**
+Dijkstra's Algorithm is a greedy algorithm used to find the shortest path between a starting node and all other nodes in a graph with non-negative edge weights. It works by iteratively selecting the unvisited node with the smallest known distance from the starting node and relaxing its neighbors.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <map>
+#include <limits>
+
+// Pair: {distance, node}
+using P = std::pair<int, int>; 
+// Graph: Adjacency list where pair is {neighbor, weight}
+using Graph = std::map<int, std::vector<P>>;
+
+void dijkstra(const Graph& graph, int startNode) {
+    // Distance map: stores the shortest distance from startNode to every other node
+    std::map<int, int> distances;
+    // Priority Queue: stores {distance, node}, ordered by smallest distance
+    std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
+
+    // Initialize distances to infinity
+    for (const auto& pair : graph) {
+        distances[pair.first] = std::numeric_limits<int>::max();
+    }
+    distances[startNode] = 0;
+    pq.push({0, startNode});
+
+    std::cout << "Dijkstra's Shortest Paths from Node " << startNode << ":\n";
+
+    while (!pq.empty()) {
+        int dist = pq.top().first;
+        int u = pq.top().second;
+        pq.pop();
+
+        // Optimization: Skip if we found a shorter path already
+        if (dist > distances[u]) continue;
+
+        // Relax neighbors
+        if (graph.count(u)) {
+            for (const auto& edge : graph.at(u)) {
+                int v = edge.first;
+                int weight = edge.second;
+
+                if (distances[u] + weight < distances[v]) {
+                    distances[v] = distances[u] + weight;
+                    pq.push({distances[v], v});
+                }
+            }
+        }
+    }
+
+    // Print results
+    for (const auto& pair : distances) {
+        std::cout << "  To Node " << pair.first << ": Distance = " << (pair.second == std::numeric_limits<int>::max() ? "Unreachable" : std::to_string(pair.second)) << "\n";
+    }
+}
+
+// Example usage:
+void run_dijkstra() {
+    Graph g = {
+        {1, {{2, 7}, {3, 9}, {6, 14}}},
+        {2, {{1, 7}, {3, 10}, {4, 15}}},
+        {3, {{1, 9}, {2, 10}, {4, 1}}},
+        {4, {{2, 15}, {3, 1}, {5, 6}}},
+        {5, {{4, 6}, {6, 9}}},
+        {6, {{1, 14}, {5, 9}}}
+    };
+    dijkstra(g, 1);
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:** $O(E \log V)$ (Using a binary heap/priority queue, where $V$ is vertices and $E$ is edges).
+*   **Space Complexity:** $O(V + E)$ (To store the graph, distances, and the priority queue).
+
+**Example Use Case:**
+Network routing protocols (like GPS navigation) where finding the path with the minimum total cost (distance, time, fuel) is required.
+
+***
+
+## 8. Two Sum (Hash Map Approach)
+
+**Brief Description:**
+The Two Sum problem asks to find two numbers in an array that add up to a specific target value. Using a hash map (`std::unordered_map`), we can achieve $O(N)$ time complexity by iterating through the array once. For each element, we calculate the required complement (Target - Current Element) and check if that complement already exists in the map.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+
+// Returns a vector containing the indices of the two numbers
+std::vector<int> twoSum(const std::vector<int>& nums, int target) {
+    // Map stores: {value: index}
+    std::unordered_map<int, int> num_map;
+
+    for (int i = 0; i < nums.size(); ++i) {
+        int complement = target - nums[i];
+
+        // Check if the complement needed is already in the map
+        if (num_map.count(complement)) {
+            // Found the pair
+            return {num_map[complement], i};
+        }
+
+        // Store the current number and its index
+        num_map[nums[i]] = i;
+    }
+    // If no solution is found
+    return {}; 
+}
+
+// Example usage:
+void run_two_sum() {
+    std::vector<int> nums = {2, 7, 11, 15};
+    int target = 9;
+    std::vector<int> result = twoSum(nums, target);
+
+    if (!result.empty()) {
+        std::cout << "Two Sum Result: Indices " << result[0] << " and " << result[1] 
+                  << " sum up to " << target << "\n";
+    } else {
+        std::cout << "Two Sum Result: No solution found.\n";
+    }
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:** $O(N)$ (Average case, as hash map lookups and insertions are $O(1)$).
+*   **Space Complexity:** $O(N)$ (To store the hash map).
+
+**Example Use Case:**
+Solving common array problems efficiently, such as finding pairs that sum to a target, or quickly checking for duplicates.
+
+***
+
+## 9. Sliding Window Technique
+
+**Brief Description:**
+The Sliding Window technique is an optimization used primarily for array and string problems. Instead of checking every possible subarray/substring (which would be $O(N^2)$), we maintain a "window" (a contiguous sub-array) and slide it across the data structure. We dynamically adjust the window size (expanding or shrinking) to maintain a specific property (e.g., sum, length, count) in $O(N)$ time.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+// Finds the maximum sum of a subarray of size K
+int maxSubarraySum(const std::vector<int>& arr, int K) {
+    if (arr.size() < K) return 0;
+
+    int current_sum = 0;
+    int max_sum = 0;
+
+    // 1. Initialize the first window (size K)
+    for (int i = 0; i < K; ++i) {
+        current_sum += arr[i];
+    }
+    max_sum = current_sum;
+
+    // 2. Slide the window one element at a time
+    for (int i = K; i < arr.size(); ++i) {
+        // Add the new element (i) and subtract the element leaving the window (i - K)
+        current_sum = current_sum + arr[i] - arr[i - K];
+        max_sum = std::max(max_sum, current_sum);
+    }
+    return max_sum;
+}
+
+// Example usage:
+void run_sliding_window() {
+    std::vector<int> data = {1, 4, 2, 10, 2, 3};
+    int K = 3;
+    int result = maxSubarraySum(data, K);
+    std::cout << "Sliding Window Result (Max sum of size " << K << "): " << result << "\n"; // Should be 14 (4+2+10)
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:** $O(N)$ (We iterate through the array only once).
+*   **Space Complexity:** $O(1)$ (We only use a few variables to track the sum and max).
+
+**Example Use Case:**
+Finding the maximum sum of a contiguous subarray of a fixed size $K$, or finding the longest substring that satisfies a certain constraint (e.g., containing at most $K$ distinct characters).
+
+***
+
+## 10. Depth-First Search (DFS)
+
+**Brief Description:**
+DFS is a graph traversal algorithm that explores as far as possible along each branch before backtracking. It is typically implemented using recursion (which implicitly uses the call stack) or an explicit stack. DFS is excellent for finding connected components, topological sorting, and path existence.
+
+**C++ Implementation:**
+```cpp
+#include <iostream>
+#include <vector>
+#include <map>
+
+// Graph representation
+using Graph = std::map<int, std::vector<int>>;
+
+// Recursive DFS function
+void dfs(const Graph& graph, int node, std::map<int, bool>& visited) {
+    visited[node] = true;
+    std::cout << node << " ";
+
+    // Visit all neighbors
+    if (graph.count(node)) {
+        for (int neighbor : graph.at(node)) {
+            if (!visited[neighbor]) {
+                dfs(graph, neighbor, visited); // Recursive call
+            }
+        }
+    }
+}
+
+// Example usage:
+void run_dfs() {
+    Graph g = {
+        {1, {2, 3}},
+        {2, {4}},
+        {3, {4, 5}},
+        {4, {6}},
+        {5, {6}},
+        {6, {}}
+    };
+    std::map<int, bool> visited;
+    
+    // Initialize all nodes as unvisited
+    for (const auto& pair : g) {
+        visited[pair.first] = false;
+    }
+
+    std::cout << "DFS Traversal starting from 1: ";
+    dfs(g, 1, visited); // Traversal order: 1 2 4 6 3 5
+    std::cout << "\n";
+}
+```
+
+**Time and Space Complexity Analysis:**
+*   **Time Complexity:** $O(V + E)$ (Every vertex and edge is visited exactly once).
+*   **Space Complexity:** $O(V)$ (To store the visited set and the recursion stack depth, which can be up to $V$).
+
+**Example Use Case:**
+Checking connectivity in a graph, finding cycles, or performing topological sorting (ordering tasks based on dependencies).
